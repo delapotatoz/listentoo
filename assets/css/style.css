@@ -633,7 +633,7 @@ address { font-style: normal; }
   gap: 24px 20px;
 }
 
-.form__field { display: grid; gap: 10px; }
+.form__field { display: grid; align-content: start; gap: 10px; }
 .form__field--full { grid-column: 1 / -1; }
 
 .form__field label { font-size: 1rem; }
@@ -678,10 +678,22 @@ address { font-style: normal; }
   box-shadow: 0 0 0 1px var(--c-accent);
 }
 
-.form__field :is(input, select, textarea):user-invalid {
+.form__field [aria-invalid="true"] {
   border-color: #ff8a80;
   box-shadow: 0 0 0 1px #ff8a80;
 }
+
+/* Error message under a field (created by assets/js/main.js) — 9.2:1 on black */
+.form__error {
+  display: flex;
+  gap: 6px;
+  color: #ff8a80;
+  font-size: .9375rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.form__error::before { content: "⚠" / ""; flex: none; } /* icon hidden from screen readers */
 
 .form__honeypot { position: absolute; left: -9999px; }
 

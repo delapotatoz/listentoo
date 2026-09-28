@@ -46,24 +46,78 @@
   }
 
   /**
-   * Contact form: tells the form service where to come back after sending,
-   * and shows the confirmation message on return (?envoye=1).
+   * Contact form: accessible error messages, return URL for the form service,
+   * and the confirmation message on return (?envoye=1).
    */
   const form = document.querySelector('[data-contact-form]');
 
   if (form) {
+    const fields = [...form.querySelectorAll('.form__field :is(input, select, textarea)')];
+
+    // Custom messages replace the browser bubbles (which vanish and follow the browser language).
+    form.noValidate = true;
+
+    // Messages come from the field's data attributes (see contact.html).
+    const messageFor = (field) => {
+      const { validity, dataset } = field;
+      if (validity.valueMissing) return dataset.errorRequired;
+      if (validity.typeMismatch || validity.patternMismatch) return dataset.errorFormat;
+      return '';
+    };
+
+    // Shows or clears the message below a field; returns true when the field is valid.
+    const check = (field) => {
+      const message = messageFor(field);
+      const id = `${field.id}-error`;
+      let error = document.getElementById(id);
+
+      if (message) {
+        if (!error) {
+          error = document.createElement('p');
+          error.id = id;
+          error.className = 'form__error';
+          field.closest('.form__field').append(error);
+        }
+        error.textContent = message;
+        field.setAttribute('aria-invalid', 'true');
+        field.setAttribute('aria-describedby', id);
+      } else {
+        error?.remove();
+        field.removeAttribute('aria-invalid');
+        field.removeAttribute('aria-describedby');
+      }
+      return !message;
+    };
+
+    // Once a field has an error, re-check it as the visitor corrects it.
+    fields.forEach((field) => {
+      const recheck = () => { if (field.hasAttribute('aria-invalid')) check(field); };
+      field.addEventListener('input', recheck);
+      field.addEventListener('change', recheck);
+      field.addEventListener('blur', recheck);
+    });
+
+    const local = !location.protocol.startsWith('http');
     const next = form.querySelector('input[name="_next"]');
-    if (location.protocol.startsWith('http')) {
-      next.value = `${location.origin}${location.pathname}?envoye=1`;
-    } else {
-      // Opened as a local file: FormSubmit rejects these, explain instead of failing.
-      next.remove();
-      form.addEventListener('submit', (event) => {
+    if (local) next.remove();
+    else next.value = `${location.origin}${location.pathname}?envoye=1`;
+
+    form.addEventListener('submit', (event) => {
+      const invalid = fields.filter((field) => !check(field));
+
+      if (invalid.length) {
+        event.preventDefault();
+        invalid[0].focus(); // the screen reader reads its label + error message
+        return;
+      }
+
+      if (local) {
+        // Opened as a local file: FormSubmit rejects these, explain instead of failing.
         event.preventDefault();
         alert('Le formulaire ne peut pas être envoyé depuis un fichier ouvert en local.\n'
           + 'Servez le site via un serveur web (ex. : npx serve .) ou mettez-le en ligne.');
-      });
-    }
+      }
+    });
 
     const params = new URLSearchParams(location.search);
 

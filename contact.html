@@ -49,16 +49,19 @@
             <div class="form__grid">
               <div class="form__field">
                 <label for="prenom">Prénom</label>
-                <input id="prenom" name="Prénom" type="text" placeholder="John" autocomplete="given-name" required>
+                <input id="prenom" name="Prénom" type="text" placeholder="John" autocomplete="given-name" required
+                  data-error-required="Veuillez saisir votre prénom.">
               </div>
               <div class="form__field">
                 <label for="nom">Nom</label>
-                <input id="nom" name="Nom" type="text" placeholder="Lennon" autocomplete="family-name" required>
+                <input id="nom" name="Nom" type="text" placeholder="Lennon" autocomplete="family-name" required
+                  data-error-required="Veuillez saisir votre nom.">
               </div>
 
               <div class="form__field">
                 <label for="motif">Je vous contacte pour</label>
-                <select id="motif" name="Motif" required>
+                <select id="motif" name="Motif" required
+                  data-error-required="Veuillez choisir le motif de votre demande.">
                   <option value="" disabled selected>Choisir une option</option>
                   <option>Un projet / une mission</option>
                   <option value="L’expérience OKTAV" data-key="oktav">L’expérience OKTAV</option>
@@ -69,7 +72,8 @@
               </div>
               <div class="form__field">
                 <label for="agence">Je souhaite parler à l’agence de</label>
-                <select id="agence" name="Agence" required>
+                <select id="agence" name="Agence" required
+                  data-error-required="Veuillez choisir l’agence à contacter.">
                   <option value="" disabled selected>Choisir une option</option>
                   <option>Paris</option>
                   <option>Lille</option>
@@ -79,16 +83,21 @@
 
               <div class="form__field">
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="jlennon@beatles.com" autocomplete="email" required>
+                <input id="email" name="email" type="email" placeholder="jlennon@beatles.com" autocomplete="email" required
+                  data-error-required="Veuillez saisir votre adresse e-mail."
+                  data-error-format="L’adresse e-mail n’est pas valide. Exemple : jlennon@beatles.com">
               </div>
               <div class="form__field">
                 <label for="telephone">Numéro de téléphone</label>
-                <input id="telephone" name="Téléphone" type="tel" placeholder="06 36 65 65 65" autocomplete="tel" pattern="[0-9 +\(\)\-.]{8,20}" required>
+                <input id="telephone" name="Téléphone" type="tel" placeholder="06 36 65 65 65" autocomplete="tel" pattern="[0-9 +\(\)\-.]{8,20}" required
+                  data-error-required="Veuillez saisir votre numéro de téléphone."
+                  data-error-format="Le numéro de téléphone n’est pas valide. Exemple : 06 36 65 65 65">
               </div>
 
               <div class="form__field form__field--full">
                 <label for="message">Votre message</label>
-                <textarea id="message" name="Message" rows="4" placeholder="Saisissez votre message ici…" required></textarea>
+                <textarea id="message" name="Message" rows="4" placeholder="Saisissez votre message ici…" required
+                  data-error-required="Veuillez saisir votre message."></textarea>
               </div>
             </div>
 
