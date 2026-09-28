@@ -106,14 +106,19 @@
       root.classList.add('is-live');
     };
 
-    const step = () => {
-      const { repelRadius, repelForce, returnSpeed, particleSize } = settings;
+    const paint = () => {
       ctx.clearRect(-bleed, -bleed, width + bleed * 2, height + bleed * 2);
-
       for (const p of particles) {
         ctx.fillStyle = p.color;
-        ctx.fillRect(p.x, p.y, particleSize, particleSize);
+        ctx.fillRect(p.x, p.y, settings.particleSize, settings.particleSize);
+      }
+    };
 
+    const step = () => {
+      const { repelRadius, repelForce, returnSpeed } = settings;
+      paint();
+
+      for (const p of particles) {
         const dx = pointer.x - p.x;
         const dy = pointer.y - p.y;
         const distance = Math.hypot(dx, dy) || 1;
@@ -161,8 +166,13 @@
       start();
     }).observe(root);
 
-    // Redraw the dots in the new color when the theme switches (see theme.js).
-    document.addEventListener('themechange', () => { build(); start(); });
+    // Theme switch (see theme.js): recolor the dots in place and repaint right away,
+    // so the page transition captures the new colors (no rebuild, no jump).
+    document.addEventListener('themechange', () => {
+      const color = getComputedStyle(document.documentElement).getPropertyValue('--c-text').trim();
+      particles.forEach((p) => { p.color = color; });
+      paint();
+    });
 
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;

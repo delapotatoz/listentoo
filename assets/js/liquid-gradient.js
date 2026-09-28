@@ -165,7 +165,12 @@
     }).observe(canvas);
 
     // Repaint with the other palette when the theme switches (see theme.js).
-    document.addEventListener('themechange', () => { setColors(); start(); });
+    // Paint the new palette immediately so the page transition captures it.
+    document.addEventListener('themechange', () => {
+      setColors();
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+      start();
+    });
 
     resize();
     start();

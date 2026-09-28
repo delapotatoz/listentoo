@@ -139,13 +139,13 @@
 
 [data-theme="light"] .hero { background-image: none; } /* the fallback image is dark */
 
-/* Smooth color change while switching theme (class set briefly by theme.js) */
-.theme-transition,
-.theme-transition *,
-.theme-transition *::before,
-.theme-transition *::after {
-  transition: background-color .4s ease, color .4s ease, border-color .4s ease, fill .4s ease, filter .4s ease !important;
-}
+/* Theme switch transition (View Transitions API, see theme.js):
+   the old page stays still while the new theme is revealed on top. */
+::view-transition-old(root),
+::view-transition-new(root) { mix-blend-mode: normal; }
+
+html.is-theme-switching::view-transition-old(root),
+html.is-theme-switching::view-transition-new(root) { animation: none; }
 
 /* ---------- Reset ---------- */
 *,
@@ -278,7 +278,7 @@ address { font-style: normal; }
 .header__inner {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 40px;
 }
 
 .header__logo { margin-right: auto; }
@@ -352,7 +352,7 @@ address { font-style: normal; }
 
 .theme-toggle[aria-checked="true"] .theme-toggle__icon--sun { rotate: 90deg; }
 
-.nav { display: flex; gap: 16px; }
+.nav { display: flex; gap: 40px; }
 
 .nav__link {
   position: relative;
@@ -969,6 +969,7 @@ address { font-style: normal; }
 
 @media (max-width: 640px) {
   .header { padding-top: 24px; }
+  .header__inner { gap: 20px; }
   .header__logo { position: relative; z-index: 2; }
 
   /* Burger menu: full-screen panel */

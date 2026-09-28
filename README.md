@@ -37,6 +37,9 @@ mémorisé (`localStorage`) et appliqué avant l'affichage par un petit script d
   `--img-mono` / `--img-lime`.
 - Le fond animé (`liquid-gradient.js`, palette `colorsLight`) et les particules suivent le thème
   via l'événement `themechange`.
+- Transition : API View Transitions (révélation circulaire depuis le bouton, sans scintillement) ;
+  fondu court si l'utilisateur préfère moins d'animations, bascule instantanée sur les navigateurs
+  sans l'API.
 
 ## Formulaire de contact
 
