@@ -4,36 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Listen too — Organisé·es pour écouter</title>
-  <meta name="description" content="Listen too est un cabinet de conseil opérationnel en expérience client. De la stratégie au delivery, sans passage de relais.">
+  <meta name="description" content="Listen too est un Cabinet de conseil opérationnel en expérience client. De la stratégie au delivery, sans passage de relais.">
+  <meta name="theme-color" content="#000000">
 
   <link rel="preload" href="assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/bodoni-moda-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/hero-bg.webp" as="image">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- SVG sprite -->
-  <svg class="sr-only" aria-hidden="true">
-    <symbol id="i-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-      <path d="M3 13l4 3M7 6l6 11M13 4l6 13M18 17l3 3"/>
-    </symbol>
-    <symbol id="i-arrow-ne" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 11l6-6M6 5h5v5"/>
-    </symbol>
-    <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 4v16M5 13l7 7 7-7"/>
-    </symbol>
-  </svg>
-
   <!-- ================= HEADER ================= -->
   <header class="header">
     <div class="container header__inner">
-      <a class="logo" href="#top" aria-label="Listen too — accueil">
-        <svg class="logo__mark" aria-hidden="true"><use href="#i-logo"/></svg>
-        <span>Listen too</span>
+      <a class="header__logo" href="#top">
+        <img src="assets/img/logo.svg" width="126" height="20" alt="Listen too">
       </a>
       <nav class="nav" aria-label="Navigation principale">
-        <a class="nav__link" href="#rejoindre">Nos offres d'emploi</a>
+        <a class="nav__link" href="#rejoindre">Nos offres d’emplois</a>
         <a class="nav__link" href="#contact">Nous contacter</a>
       </nav>
     </div>
@@ -43,11 +31,10 @@
 
     <!-- ================= HERO ================= -->
     <section class="hero">
-      <div class="hero__beam" aria-hidden="true"></div>
-      <div class="container hero__inner">
+      <div class="container">
         <h1 class="hero__title">
           <span class="hero__line">Nous sommes</span>
-          <em class="hero__line hero__line--serif">organisé<span class="hero__dot">·</span>es pour</em>
+          <em class="hero__line hero__line--serif">organisé·es pour</em>
           <span class="hero__line hero__line--end">écouter.</span>
         </h1>
         <p class="hero__text">
@@ -55,38 +42,38 @@
           De la stratégie au delivery, sans passage de relais.
         </p>
       </div>
-      <a class="hero__scroll" href="#manifeste" aria-label="Faire défiler vers le contenu">
-        <svg aria-hidden="true"><use href="#i-arrow-down"/></svg>
+      <a class="hero__scroll" href="#accroche" aria-label="Faire défiler vers le contenu">
+        <img src="assets/img/icons/arrow-down.svg" width="44" height="44" alt="">
       </a>
     </section>
 
-    <!-- ================= MANIFESTE ================= -->
-    <section class="section manifesto" id="manifeste">
+    <!-- ================= ACCROCHE ================= -->
+    <section class="section" id="accroche">
       <div class="container">
-        <div class="manifesto__content">
+        <div class="hook">
           <h2 class="title">
             Vos budgets technologiques n'ont jamais été aussi élevés.
             Ce que vivent vos clients n'a jamais été aussi banal.
           </h2>
-          <p class="text">
+          <p class="lead">
             Nous écoutons vos clients, nous prouvons les résultats. Du premier rendez-vous
             au dernier livrable, vous ne changez pas d'interlocuteur. Ceux qui vous
             écoutent sont ceux qui livrent.
           </p>
           <a class="btn" href="#contact">
             Nous contacter
-            <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow-ne"/></svg>
+            <img class="btn__icon" src="assets/img/icons/arrow-ne.svg" width="20" height="20" alt="">
           </a>
         </div>
       </div>
     </section>
 
     <!-- ================= PILIERS ================= -->
-    <section class="section pillars">
-      <div class="container pillars__grid">
+    <section class="section">
+      <div class="container pillars">
         <div class="pillars__intro">
           <h2 class="title">Tout ce qui ne se mesure pas ne s'améliore pas.</h2>
-          <p class="text">
+          <p class="lead">
             Ce principe traverse tout : recrutement, missions, management, delivery.
             La mesure n'est pas un outil. C'est une discipline.
           </p>
@@ -94,19 +81,19 @@
 
         <ol class="pillars__list">
           <li class="pillar">
-            <span class="tag">Pilier #1</span>
+            <span class="badge">Pilier #1</span>
             <h3 class="pillar__name">Écoute</h3>
             <p class="pillar__subtitle">Diagnostic &amp; stratégie</p>
             <p class="pillar__text">Vos clients vivent une expérience que vous ne connaissez pas vraiment.</p>
           </li>
           <li class="pillar">
-            <span class="tag">Pilier #2</span>
-            <h3 class="pillar__name">Exécution</h3>
+            <span class="badge">Pilier #2</span>
+            <h3 class="pillar__name">Éxecution</h3>
             <p class="pillar__subtitle">Activation &amp; delivery</p>
             <p class="pillar__text">Une transformation imposée de l'extérieur ne tient pas.</p>
           </li>
           <li class="pillar">
-            <span class="tag">Pilier #3</span>
+            <span class="badge">Pilier #3</span>
             <h3 class="pillar__name">Performance</h3>
             <p class="pillar__subtitle">Mesure &amp; résultats</p>
             <p class="pillar__text">Ce qui ne se mesure pas ne se finance pas.</p>
@@ -116,60 +103,47 @@
     </section>
 
     <!-- ================= COLLECTIF ================= -->
-    <section class="section collective">
+    <section class="section">
       <div class="container">
-        <h2 class="title title--duo">
-          Vous n'achetez pas un consultant
+        <h2 class="title heading">
+          Vous n’achetez pas un consultant
           <em class="serif">Vous accédez à un collectif</em>
         </h2>
 
-        <ul class="cards cards--3">
-          <li class="card">
-            <svg class="card__icon" viewBox="0 0 40 40" aria-hidden="true">
-              <path fill="currentColor" d="M20 16C14 4 4 2 3 3s1 11 13 17C4 26 2 36 3 37s11-1 17-13c6 12 16 14 17 13s-1-11-13-17C36 14 38 4 37 3s-11 1-17 13z"/>
-            </svg>
-            <span class="tag">Gouvernance</span>
+        <ul class="roles">
+          <li class="card role">
+            <img class="role__icon" src="assets/img/icons/role-gouvernance.svg" width="80" height="80" alt="">
+            <span class="badge">Gouvernance</span>
             <h3 class="card__title">PO - PMO - Chefs de projet</h3>
-            <p class="card__text">Piloter, sans perdre, décider.</p>
+            <p class="card__text">Piloter, structurer, décider.</p>
           </li>
-          <li class="card">
-            <svg class="card__icon" viewBox="0 0 40 40" aria-hidden="true">
-              <path fill="currentColor" d="M20 2l2.6 4.2 4.6-1.8.6 4.9 4.9.6-1.8 4.6L35 17l-3.6 3 3.6 3-4.1 2.5 1.8 4.6-4.9.6-.6 4.9-4.6-1.8L20 38l-2.6-4.2-4.6 1.8-.6-4.9-4.9-.6 1.8-4.6L5 23l3.6-3L5 17l4.1-2.5-1.8-4.6 4.9-.6.6-4.9 4.6 1.8z"/>
-            </svg>
-            <span class="tag">Marketing digital</span>
+          <li class="card role">
+            <img class="role__icon" src="assets/img/icons/role-marketing.svg" width="80" height="80" alt="">
+            <span class="badge">Marketing digital</span>
             <h3 class="card__title">Acquisition - CRM - Activation</h3>
             <p class="card__text">Connecter la promesse à l'expérience.</p>
           </li>
-          <li class="card">
-            <svg class="card__icon" viewBox="0 0 40 40" aria-hidden="true">
-              <path fill="currentColor" d="M20 2l1.6 14.2L30 8l-6.4 10.4L38 20l-14.4 1.6L30 32l-8.4-8.2L20 38l-1.6-14.2L10 32l6.4-10.4L2 20l14.4-1.6L10 8l8.4 8.2z"/>
-            </svg>
-            <span class="tag">Product design</span>
-            <h3 class="card__title">UX/UI - DA - UX Research</h3>
-            <p class="card__text">Construire ce que le client vit.</p>
+          <li class="card role">
+            <img class="role__icon" src="assets/img/icons/role-design.svg" width="80" height="80" alt="">
+            <span class="badge">Product design</span>
+            <h3 class="card__title">UX/UI - DA - UX&nbsp;Research</h3>
+            <p class="card__text">Concevoir ce que le client vit.</p>
           </li>
-          <li class="card">
-            <svg class="card__icon" viewBox="0 0 40 40" aria-hidden="true">
-              <path fill="currentColor" d="M20 2c5 0 8 3 8 7H12c0-4 3-7 8-7zM11 12h18l3 7H8zM8 22h24l4 8H4zM4 33h32v5H4z"/>
-            </svg>
-            <span class="tag">Product techops</span>
+          <li class="card role">
+            <img class="role__icon" src="assets/img/icons/role-techops.svg" width="80" height="80" alt="">
+            <span class="badge">Product techops</span>
             <h3 class="card__title">Architecture - Développement - Intégration</h3>
             <p class="card__text">Construire ce que la CX exige.</p>
           </li>
-          <li class="card">
-            <svg class="card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-              <ellipse cx="20" cy="8" rx="15" ry="5"/>
-              <path d="M5 8v24c0 2.8 6.7 5 15 5s15-2.2 15-5V8M5 16c0 2.8 6.7 5 15 5s15-2.2 15-5M5 24c0 2.8 6.7 5 15 5s15-2.2 15-5"/>
-            </svg>
-            <span class="tag">Product data &amp; IA</span>
+          <li class="card role">
+            <img class="role__icon" src="assets/img/icons/role-data.svg" width="80" height="80" alt="">
+            <span class="badge">Product data &amp; IA</span>
             <h3 class="card__title">Analyse - Modélisation - BI - IA</h3>
             <p class="card__text">Mesurer, prédire, améliorer.</p>
           </li>
-          <li class="card">
-            <svg class="card__icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
-              <path d="M20 4v32M4 20h32M8.7 8.7l22.6 22.6M31.3 8.7L8.7 31.3M13.9 5.2l12.2 29.6M26.1 5.2L13.9 34.8M5.2 13.9l29.6 12.2M34.8 13.9L5.2 26.1"/>
-            </svg>
-            <span class="tag">Management</span>
+          <li class="card role">
+            <img class="role__icon" src="assets/img/icons/role-management.svg" width="80" height="80" alt="">
+            <span class="badge">Management</span>
             <h3 class="card__title">Leadership - Conduite du changement - Organisation</h3>
             <p class="card__text">Faire tenir la transformation dans la durée.</p>
           </li>
@@ -178,187 +152,188 @@
     </section>
 
     <!-- ================= CX IS HUMAN ================= -->
-    <section class="section human">
-      <div class="container human__grid">
+    <section class="section">
+      <div class="container human">
         <div class="human__content">
           <h2 class="title">Vous souvenez-vous de la dernière fois qu'une marque vous a surpris en bien ?</h2>
-          <p class="text">
-            Ce n'était probablement pas un algorithme. C'était un geste.<br>
-            Une attention.<br>
+          <p class="lead">
+            Ce n'était probablement pas un algorithme. C'était un geste. Une attention.<br>
             Quelqu'un qui avait compris sans qu'on lui explique.
           </p>
         </div>
-        <p class="human__statement" aria-label="CX is human">
-          <span>CX</span><span>IS</span><span>HU</span><span>MAN</span>
-        </p>
+        <img class="human__visual" src="assets/img/cx-is-human.webp" width="330" height="467" alt="CX is human" loading="lazy">
       </div>
     </section>
 
     <!-- ================= OKTAV ================= -->
-    <section class="section oktav">
-      <div class="container">
+    <section class="section">
+      <div class="container oktav">
         <div class="oktav__head">
-          <h2 class="oktav__logo">OKTAV<sup>”</sup></h2>
-          <a class="btn" href="#">
-            Voir la dernière Lypo
-            <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow-ne"/></svg>
+          <h2 class="oktav__logo">
+            <img src="assets/img/oktav.svg" width="627" height="121" alt="OKTAV">
+          </h2>
+          <a class="btn" href="#contact">
+            Voir le déroulé type
+            <img class="btn__icon" src="assets/img/icons/arrow-ne.svg" width="20" height="20" alt="">
           </a>
         </div>
 
-        <div class="oktav__intro">
-          <p class="oktav__lead">
+        <div class="oktav__intro lead">
+          <p>
             OKTAV est une expérience que nous ouvrons à nos clients et qu'aucun autre
             cabinet ne propose. Ici, la recommandation laisse place à la décision.
           </p>
-          <p class="oktav__note">Déjà éprouvé auprès de directions CX de différents secteurs.</p>
+          <p>Déjà éprouvé auprès de directions CX de différents secteurs.</p>
         </div>
 
         <ol class="steps">
-          <li class="step">
+          <li>
             <h3 class="step__title">1/ Le format</h3>
-            <p class="step__text">Plusieurs sessions étalées dans le temps. Vos équipes, la voix réelle de vos clients et nos communautés d'experts sectoriels se concentrent sur un sujet : votre CX.</p>
+            <p class="step__text">Plusieurs sessions étalées dans le temps, vos équipes, la voix réelle de vos clients et nos six communautés d'experts sectoriels se concentrent sur un sujet : votre CX.</p>
           </li>
-          <li class="step">
+          <li>
             <h3 class="step__title">2/ Le livrable</h3>
-            <p class="step__text">Ce qui en sort vient enrichi à chaque étape : des quick wins activables dès la tendance, et une trajectoire réaliste pour transformer votre CX.</p>
+            <p class="step__text">Ce qui en sort est acté à chaque étape : des quick wins activables dès le lendemain, et une trajectoire réaliste pour transformer votre CX.</p>
           </li>
-          <li class="step">
+          <li>
             <h3 class="step__title">3/ Le point de départ</h3>
-            <p class="step__text">Un exercice de vision pure, avant tout arbitrage IT, organisation ou budget. Le point de départ pour imaginer des parcours réalistes à impact, de demain.</p>
+            <p class="step__text">Un exercice de vision pure, avant tout arbitrage IT, organisation ou budget le point de départ pour imaginer les parcours réalistes à impact de demain.</p>
           </li>
         </ol>
       </div>
     </section>
 
     <!-- ================= ÉQUIPE ================= -->
-    <section class="section team" id="rejoindre">
+    <section class="section" id="rejoindre">
       <div class="container">
-        <h2 class="title title--duo">
+        <h2 class="title heading">
           Un cabinet qui refuse de séparer
           <em class="serif">le savoir-faire technologique du sens humain.</em>
         </h2>
 
-        <div class="team__grid">
+        <div class="team">
           <figure class="card quote">
-            <span class="tag">Product Manager</span>
-            <figcaption class="quote__name">Nathalie R.</figcaption>
-            <blockquote class="quote__text">“Une entreprise à taille humaine et des collègues accessibles.”</blockquote>
+            <span class="badge">Product Manager</span>
+            <figcaption class="card__title">Nathalie R.</figcaption>
+            <blockquote class="card__text">“Une entreprise à taille humaine et des collègues accessibles.”</blockquote>
           </figure>
 
           <figure class="card quote team__wide">
-            <span class="tag">Business Manager</span>
-            <figcaption class="quote__name">Laurianne A.</figcaption>
-            <blockquote class="quote__text">“Listen too, c'est une vie d'entreprise dynamique, des missions intéressantes, un suivi et un accompagnement de carrière.”</blockquote>
+            <span class="badge">Business Manager</span>
+            <figcaption class="card__title">Lauranne A.</figcaption>
+            <blockquote class="card__text">“Listen too, c’est une vie d’entreprise dynamique, des missions intéressantes, un suivi et un accompagnement de carrière.”</blockquote>
           </figure>
 
           <article class="card join team__tall">
             <h3 class="join__title">Pourquoi nous rejoindre ?</h3>
             <ul class="join__list">
               <li class="join__item">
-                <span class="join__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19c0-3.3 2.7-6 6-6s6 2.7 6 6M16 11l2 2 4-4"/></svg>
-                </span>
+                <img class="join__icon" src="assets/img/icons/join-human.svg" width="44" height="44" alt="">
                 <div>
                   <p class="join__label">Humain avant tout</p>
-                  <p class="join__text">Une structure à taille humaine où chaque consultant compte.</p>
+                  <p class="card__text">Une structure à taille humaine où chaque consultant compte.</p>
                 </div>
               </li>
               <li class="join__item">
-                <span class="join__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg>
-                </span>
+                <img class="join__icon" src="assets/img/icons/join-evolution.svg" width="44" height="44" alt="">
                 <div>
                   <p class="join__label">Évolution de carrière</p>
-                  <p class="join__text">Suivi personnalisé, formations et missions variées.</p>
+                  <p class="card__text">Suivi personnalisé, formations et missions variées.</p>
                 </div>
               </li>
               <li class="join__item">
-                <span class="join__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v5M8 21h8"/></svg>
-                </span>
+                <img class="join__icon" src="assets/img/icons/join-fiesta.svg" width="44" height="44" alt="">
                 <div>
                   <p class="join__label">Vie d'entreprise</p>
-                  <p class="join__text">Séminaires, afterworks, et événements réguliers.</p>
+                  <p class="card__text">Séminaires, afterworks, et événements réguliers.</p>
                 </div>
               </li>
             </ul>
           </article>
 
           <figure class="card quote">
-            <span class="tag">Product Manager</span>
-            <figcaption class="quote__name">Arnaud R.</figcaption>
-            <blockquote class="quote__text">“Chez Listen too, l'écoute des collaborateurs et des clients.”</blockquote>
+            <span class="badge">Product Manager</span>
+            <figcaption class="card__title">Arnaud R.</figcaption>
+            <blockquote class="card__text">“Chez Listen too, l’écoute des collaborateurs et des clients.”</blockquote>
           </figure>
 
           <figure class="card quote">
-            <span class="tag">Product Designer</span>
-            <figcaption class="quote__name">Matthieu D.</figcaption>
-            <blockquote class="quote__text">“Listen too est une agence conseil à taille humaine qui agit.”</blockquote>
+            <span class="badge">Product Designer</span>
+            <figcaption class="card__title">Matthieu D.</figcaption>
+            <blockquote class="card__text">“Listen too est une agence conseil à taille humaine qui agit.”</blockquote>
           </figure>
 
           <figure class="card quote">
-            <span class="tag">Product Manager</span>
-            <figcaption class="quote__name">Arnaud R.</figcaption>
-            <blockquote class="quote__text">“Chez Listen too, l'écoute des collaborateurs et des clients.”</blockquote>
+            <span class="badge">Product Manager</span>
+            <figcaption class="card__title">Arnaud R.</figcaption>
+            <blockquote class="card__text">“Chez Listen too, l’écoute des collaborateurs et des clients.”</blockquote>
           </figure>
 
           <figure class="card quote">
-            <span class="tag">Product Designer</span>
-            <figcaption class="quote__name">Quentin D.</figcaption>
-            <blockquote class="quote__text">“Listen too est une agence conseil à taille humaine qui agit.”</blockquote>
+            <span class="badge">Product Designer</span>
+            <figcaption class="card__title">Quentin D.</figcaption>
+            <blockquote class="card__text">“Listen too est une agence conseil à taille humaine qui agit.”</blockquote>
           </figure>
         </div>
       </div>
     </section>
 
-    <!-- ================= TERRAIN ================= -->
-    <section class="section field">
+    <!-- ================= RÉFÉRENCES ================= -->
+    <section class="section">
       <div class="container">
-        <h2 class="title title--duo">
+        <h2 class="title">
           13 ans de terrain.
           <em class="serif">7 secteurs. 1 méthode.</em>
         </h2>
-        <p class="field__text">Nos missions alimentent notre méthode. Notre méthode se prouve sur vos enjeux.</p>
+        <p class="refs__text">Nos missions alimentent notre méthode. Notre méthode se prouve sur vos enjeux.</p>
       </div>
 
-      <div class="marquee" data-marquee>
-        <ul class="marquee__track sectors">
-          <li class="chip"><span aria-hidden="true">✚</span> Énergie</li>
-          <li class="chip"><span aria-hidden="true">⚕</span> Santé</li>
-          <li class="chip"><span aria-hidden="true">✈</span> Hospitality / Travel</li>
-          <li class="chip"><span aria-hidden="true">⌂</span> Retail</li>
-          <li class="chip"><span aria-hidden="true">⛫</span> Banque &amp; Assurance</li>
-          <li class="chip"><span aria-hidden="true">♡</span> Luxe</li>
-          <li class="chip"><span aria-hidden="true">✦</span> Médias</li>
+      <div class="marquee refs__sectors" data-marquee>
+        <ul class="marquee__track" aria-label="Secteurs">
+          <li class="chip"><img src="assets/img/icons/sector-luxe.svg" width="24" height="24" alt="">Luxe</li>
+          <li class="chip"><img src="assets/img/icons/sector-b2b.svg" width="24" height="24" alt="">Services B2B</li>
+          <li class="chip"><img src="assets/img/icons/sector-industrie.svg" width="24" height="24" alt="">Industrie</li>
+          <li class="chip"><img src="assets/img/icons/sector-sante.svg" width="24" height="24" alt="">Santé</li>
+          <li class="chip"><img src="assets/img/icons/sector-hospitality.svg" width="24" height="24" alt="">Hospitality / Travel</li>
+          <li class="chip"><img src="assets/img/icons/sector-retail.svg" width="24" height="24" alt="">Retail</li>
+          <li class="chip"><img src="assets/img/icons/sector-banque.svg" width="24" height="24" alt="">Banque &amp; Assurance</li>
         </ul>
       </div>
 
-      <div class="marquee marquee--reverse" data-marquee>
-        <ul class="marquee__track clients" aria-label="Ils nous font confiance">
-          <li class="client client--bold">apec</li>
-          <li class="client client--serif">Le Figaro</li>
-          <li class="client client--heavy">arte</li>
-          <li class="client client--serif">L'Occitane</li>
-          <li class="client">fortuneo</li>
-          <li class="client client--heavy">ONEHO</li>
-          <li class="client client--bold">SNCF</li>
-          <li class="client client--serif">Decathlon</li>
+      <div class="marquee marquee--reverse refs__clients" data-marquee>
+        <ul class="marquee__track" aria-label="Ils nous font confiance">
+          <li><img src="assets/img/clients/bnp-paribas.webp" width="95" height="36" alt="BNP Paribas"></li>
+          <li><img src="assets/img/clients/cartier.webp" width="89" height="25" alt="Cartier"></li>
+          <li><img src="assets/img/clients/fnac-darty.webp" width="130" height="25" alt="Fnac Darty"></li>
+          <li><img src="assets/img/clients/hello-bank.webp" width="33" height="36" alt="Hello bank!"></li>
+          <li><img src="assets/img/clients/apec.webp" width="79" height="25" alt="Apec"></li>
+          <li><img src="assets/img/clients/sephora.webp" width="58" height="50" alt="Sephora"></li>
+          <li><img src="assets/img/clients/arte.webp" width="91" height="22" alt="Arte"></li>
+          <li><img src="assets/img/clients/loccitane.webp" width="107" height="25" alt="L’Occitane en Provence"></li>
+          <li><img src="assets/img/clients/fortuneo.webp" width="102" height="29" alt="Fortuneo"></li>
+          <li><img src="assets/img/clients/engie.webp" width="80" height="28" alt="Engie"></li>
+          <li><img src="assets/img/clients/macif.webp" width="41" height="39" alt="Macif"></li>
+          <li><img src="assets/img/clients/leroy-merlin.webp" width="60" height="36" alt="Leroy Merlin"></li>
+          <li><img src="assets/img/clients/sncf-connect.webp" width="100" height="31" alt="SNCF Connect"></li>
+          <li><img src="assets/img/clients/boulanger.webp" width="125" height="17" alt="Boulanger"></li>
+          <li><img src="assets/img/clients/accor.webp" width="59" height="48" alt="Accor"></li>
+          <li><img src="assets/img/clients/decathlon.webp" width="161" height="24" alt="Decathlon"></li>
         </ul>
       </div>
     </section>
 
-    <!-- ================= CTA ================= -->
-    <section class="section cta" id="contact">
+    <!-- ================= CONTACT ================= -->
+    <section class="section" id="contact">
       <div class="container">
-        <div class="cta__box">
-          <h2 class="title cta__title">Parlons de ce que vos clients vivent vraiment.</h2>
-          <p class="cta__text">
+        <div class="contact">
+          <h2 class="title">Parlons de ce que vos clients vivent vraiment.</h2>
+          <p class="lead">
             Un premier échange suffit à savoir si on peut vous être utile.
             On vient avec des questions, pas avec un catalogue.
           </p>
           <a class="btn btn--light" href="mailto:contact@listentoo.fr">
             Nous contacter
-            <svg class="btn__icon" aria-hidden="true"><use href="#i-arrow-ne"/></svg>
+            <img class="btn__icon" src="assets/img/icons/arrow-ne.svg" width="20" height="20" alt="">
           </a>
         </div>
       </div>
@@ -371,28 +346,27 @@
     <div class="container">
       <div class="footer__top">
         <div class="footer__brand">
-          <a class="logo logo--lg" href="#top">
-            <svg class="logo__mark" aria-hidden="true"><use href="#i-logo"/></svg>
-            <span>Listen too</span>
-          </a>
-          <p class="footer__tagline">Organisé·es pour écouter</p>
+          <div>
+            <a href="#top"><img src="assets/img/logo.svg" width="270" height="43" alt="Listen too"></a>
+            <p class="footer__slogan">Organisé.es pour écouter</p>
+          </div>
 
-          <ul class="footer__social">
-            <li><a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9h3.5v11H4zM5.7 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM9.5 9h3.3v1.5c.5-.9 1.7-1.8 3.5-1.8 3.7 0 4.2 2.4 4.2 5.5V20H17v-5.1c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V20H9.5z"/></svg></a></li>
-            <li><a class="footer__pill" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21M12 3C9.5 5.5 8.2 8.5 8.2 12s1.3 6.5 3.8 9"/></svg><span>Welcome<br>to the Jungle</span></a></li>
-            <li><a class="footer__pill" href="#"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4a.6.6 0 0 1-.9.2c-2.4-1.5-5.4-1.8-9-1a.6.6 0 1 1-.3-1.2c3.9-.9 7.2-.5 9.9 1.1.3.2.4.6.3.9zm1.2-2.7a.8.8 0 0 1-1.1.3c-2.7-1.7-6.9-2.2-10.2-1.2a.8.8 0 1 1-.4-1.5c3.7-1.1 8.3-.6 11.4 1.3.4.2.5.7.3 1.1zm.1-2.8C14.7 9 9.4 8.8 6.3 9.7a.9.9 0 1 1-.5-1.8c3.5-1.1 9.4-.9 13 1.3a.9.9 0 1 1-.9 1.7z"/></svg><span>Spotify</span></a></li>
+          <ul class="footer__partners">
+            <li><a href="https://www.linkedin.com/" aria-label="LinkedIn"><img src="assets/img/icons/linkedin.svg" width="30" height="30" alt=""></a></li>
+            <li><a href="https://www.welcometothejungle.com/" aria-label="Welcome to the Jungle"><img src="assets/img/icons/wttj.svg" width="118" height="30" alt=""></a></li>
+            <li><a href="https://open.spotify.com/" aria-label="Spotify"><img src="assets/img/spotify.webp" width="110" height="31" alt=""></a></li>
           </ul>
 
           <ul class="footer__labels" aria-label="Labels">
-            <li class="footer__label footer__label--square">Great<br>Place<br>To<br>Work</li>
-            <li class="footer__label footer__label--round">B</li>
+            <li><img src="assets/img/label-gptw.webp" width="74" height="74" alt="Great Place To Work"></li>
+            <li><img src="assets/img/label-ecovadis.webp" width="48" height="48" alt="EcoVadis Silver 2023"></li>
           </ul>
         </div>
 
         <ul class="footer__offices">
           <li>
             <h3 class="footer__city">Paris</h3>
-            <address>12-14 rue de l'Église<br>75015 Paris</address>
+            <address>12-14 rue de l’Église<br>75015 Paris</address>
           </li>
           <li>
             <h3 class="footer__city">Lille</h3>
@@ -400,13 +374,13 @@
           </li>
           <li>
             <h3 class="footer__city">Nantes</h3>
-            <address>17 bis devant de Berlin<br>44000 Nantes</address>
+            <address>17 boulevard de Berlin<br>44000 Nantes</address>
           </li>
         </ul>
       </div>
 
       <div class="footer__bottom">
-        <p>© 2026 Listen too - Fait avec <span class="footer__heart" aria-label="amour">♥</span> à Lille &amp; Paris</p>
+        <p>© 2026 Listen too - fait avec 💚 à Lille &amp; Paris</p>
         <a href="#">Mentions légales</a>
       </div>
     </div>
