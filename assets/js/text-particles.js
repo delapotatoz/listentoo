@@ -13,7 +13,6 @@
   const SETTINGS = {
     fontFamily: '"Didot", "Bodoni Moda", serif',
     lineHeight: 0.8,
-    particleColor: '#ffffff',
     particleSize: 2,
     resolution: 3,     // px between sampled dots
     repelRadius: 100,
@@ -72,11 +71,13 @@
       off.width = width;
       off.height = height;
       const offCtx = off.getContext('2d', { willReadFrequently: true });
-      offCtx.fillStyle = settings.particleColor;
+      // Dots take the theme's text color (token, not the transitioning `color`).
+      const color = getComputedStyle(document.documentElement).getPropertyValue('--c-text').trim() || '#fff';
+      offCtx.fillStyle = color;
       offCtx.font = font(fontSize);
       offCtx.textBaseline = 'top';
       // A thin stroke keeps the Didone hairlines from falling between samples.
-      offCtx.strokeStyle = settings.particleColor;
+      offCtx.strokeStyle = color;
       offCtx.lineWidth = fontSize * settings.hairline;
       lines.forEach((line, i) => {
         const y = i * lineHeight + fontSize * 0.1;
@@ -159,6 +160,9 @@
       build();
       start();
     }).observe(root);
+
+    // Redraw the dots in the new color when the theme switches (see theme.js).
+    document.addEventListener('themechange', () => { build(); start(); });
 
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;

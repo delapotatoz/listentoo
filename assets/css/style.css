@@ -38,14 +38,42 @@
   font-display: swap;
 }
 
-/* ---------- Tokens ---------- */
+/* ---------- Tokens ----------
+   Dark ("nuit") is the default theme; light ("jour") overrides the color
+   tokens below. The theme is set on <html data-theme> (see theme.js). */
 :root {
+  color-scheme: dark;
+
   --c-bg: #000;
-  --c-surface: #1f1f1f;
+  --c-surface: #1f1f1f;          /* cards */
+  --c-panel: #000;               /* contact card */
+  --c-footer: #1f1f1f;
   --c-border: rgba(255, 255, 255, .03);
   --c-text: #fff;
   --c-accent: #d3ef9d;
-  --c-ink: #000;
+  --c-ink: #000;                 /* text on accent */
+  --c-focus: var(--c-accent);
+  --c-link-hover: var(--c-accent);
+  --c-giant: rgba(255, 255, 255, .09);
+
+  /* form */
+  --c-field: #1f1f1f;
+  --c-field-border: #8c8c8c;     /* 6.2:1 on the panel, 4.9:1 on the field */
+  --c-field-hover: #b3b3b3;
+  --c-placeholder: #a8a8a8;      /* 6.9:1 on the field */
+  --c-error: #ff8a80;            /* 9.2:1 on the panel */
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+
+  /* hero readability */
+  --hero-scrim:
+    radial-gradient(ellipse 40% 26% at 58% 75%, rgb(0 0 0 / .45), transparent 80%),
+    linear-gradient(rgb(0 0 0 / .1), rgb(0 0 0 / .45) 18%, rgb(0 0 0 / .45) 80%, rgb(0 0 0 / .1));
+  --hero-scrim-mobile: linear-gradient(to top, rgb(0 0 0 / .7) 15%, rgb(0 0 0 / .45) 55%, transparent 85%);
+  --hero-shadow: 0 1px 2px rgb(0 0 0 / .35), 0 2px 28px rgb(0 0 0 / .45);
+
+  /* monochrome artwork is exported white (dark theme) or lime */
+  --img-mono: none;              /* white logos & icons */
+  --img-lime: none;              /* lime artwork (OKTAV, role icons) */
 
   --f-sans: "WT Gothic", system-ui, sans-serif;
   --f-serif: "Didot", "Bodoni Moda", "Bodoni 72", serif;
@@ -64,6 +92,59 @@
   --fs-body: 1rem;                                 /* 16px  */
 
   --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+/* Light theme ("jour") — contrasts checked for WCAG AA */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --c-bg: #f4f4ef;
+  --c-surface: #fff;
+  --c-panel: #fff;
+  --c-footer: #e8e8e1;
+  --c-border: rgba(0, 0, 0, .08);
+  --c-text: #111;                /* 17.5:1 on the background */
+  --c-focus: #111;
+  --c-link-hover: #4a6310;       /* 6.3:1 on the background */
+  --c-giant: rgba(0, 0, 0, .06);
+
+  --c-field: #f4f4ef;
+  --c-field-border: #767676;     /* 4.5:1 on the panel, 4.1:1 on the field */
+  --c-field-hover: #4d4d4d;
+  --c-placeholder: #666;         /* 5.2:1 on the field */
+  --c-error: #b3261e;            /* 6.5:1 on the panel */
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23111' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+
+  /* dark text reads on the whole light gradient: no scrim needed */
+  --hero-scrim: none;
+  --hero-scrim-mobile: none;
+  --hero-shadow: none;
+
+  --img-mono: invert(1);         /* white → black */
+  --img-lime: brightness(0);     /* lime → black (lime is unreadable on light) */
+}
+
+/* Artwork exported in white or lime adapts to the theme (see --img-* tokens) */
+.header__logo img,
+.footer__brand a > img,
+.footer__partners img,
+.footer__labels li:first-child img,
+.chip img,
+.refs__clients img,
+.hero__scroll img,
+.human__visual > img { filter: var(--img-mono); }
+
+.oktav__logo img,
+.role__icon { filter: var(--img-lime); }
+
+[data-theme="light"] .hero { background-image: none; } /* the fallback image is dark */
+
+/* Smooth color change while switching theme (class set briefly by theme.js) */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color .4s ease, color .4s ease, border-color .4s ease, fill .4s ease, filter .4s ease !important;
 }
 
 /* ---------- Reset ---------- */
@@ -100,7 +181,10 @@ a { color: inherit; text-decoration: none; }
 em { font-style: normal; }
 address { font-style: normal; }
 
-:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 3px; }
+
+/* Lime blocks: the lime focus ring would be invisible there */
+.contact :focus-visible { outline-color: var(--c-ink); }
 
 /* ---------- Layout ---------- */
 .container {
@@ -194,11 +278,79 @@ address { font-style: normal; }
 .header__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 24px;
 }
 
+.header__logo { margin-right: auto; }
 .header__logo img { width: 126px; }
+
+/* Theme switch (nuit / jour) — wired by assets/js/theme.js */
+.theme-toggle {
+  position: relative;
+  z-index: 2;                    /* stays usable above the mobile menu */
+  flex: none;
+  margin: -4px;
+  padding: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--c-text);
+  cursor: pointer;
+}
+
+.theme-toggle__track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid color-mix(in srgb, var(--c-text) 40%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c-text) 8%, transparent);
+  transition: border-color .3s;
+}
+
+.theme-toggle:hover .theme-toggle__track { border-color: var(--c-text); }
+
+.theme-toggle__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  box-shadow: 0 2px 8px rgb(0 0 0 / .3);
+  transition: translate .5s var(--ease);
+}
+
+.theme-toggle[aria-checked="true"] .theme-toggle__thumb { translate: 28px 0; }
+
+.theme-toggle__icon {
+  position: relative;
+  z-index: 1;                    /* above the thumb */
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  opacity: .6;
+  transition: color .3s, opacity .3s, rotate .6s var(--ease);
+}
+
+.theme-toggle__icon--moon { fill: currentColor; stroke: none; }
+
+/* The active icon sits inside the lime thumb */
+.theme-toggle[aria-checked="false"] .theme-toggle__icon--moon,
+.theme-toggle[aria-checked="true"] .theme-toggle__icon--sun {
+  color: var(--c-ink);
+  opacity: 1;
+}
+
+.theme-toggle[aria-checked="true"] .theme-toggle__icon--sun { rotate: 90deg; }
 
 .nav { display: flex; gap: 16px; }
 
@@ -258,7 +410,7 @@ address { font-style: normal; }
   align-items: center;
   min-height: min(100svh, 957px);
   padding-block: 140px 120px;
-  background: url("../img/hero-bg.webp") center / cover no-repeat; /* fallback */
+  background: var(--c-bg) url("../img/hero-bg.webp") center / cover no-repeat; /* fallback */
   isolation: isolate;
 }
 
@@ -283,14 +435,12 @@ address { font-style: normal; }
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 40% 26% at 58% 75%, rgb(0 0 0 / .45), transparent 80%), /* paragraph */
-    linear-gradient(rgb(0 0 0 / .1), rgb(0 0 0 / .45) 18%, rgb(0 0 0 / .45) 80%, rgb(0 0 0 / .1)); /* title band */
+  background: var(--hero-scrim); /* title band + paragraph, see tokens */
 }
 
 .hero__title,
 .hero__text {
-  text-shadow: 0 1px 2px rgb(0 0 0 / .35), 0 2px 28px rgb(0 0 0 / .45);
+  text-shadow: var(--hero-shadow);
 }
 
 .hero__title {
@@ -557,7 +707,7 @@ address { font-style: normal; }
 .footer {
   overflow: hidden;
   margin-top: var(--section-gap);
-  background: var(--c-surface);
+  background: var(--c-footer);
 }
 
 .footer__top {
@@ -608,7 +758,7 @@ address { font-style: normal; }
   letter-spacing: -.06em;
   text-align: center;
   white-space: nowrap;
-  color: rgba(255, 255, 255, .09);
+  color: var(--c-giant);
   user-select: none;
 }
 
@@ -631,7 +781,7 @@ address { font-style: normal; }
   margin-inline: auto;
   padding: 32px;
   border-radius: 24px;
-  background: var(--c-bg);
+  background: var(--c-panel);
 }
 
 .contact-card__title {
@@ -656,18 +806,16 @@ address { font-style: normal; }
 
 .form__field label { font-size: 1rem; }
 
-/* Field colors meet WCAG AA:
-   border #8c8c8c → 6.2:1 on the black card, 4.9:1 on the field (non-text ≥ 3:1)
-   placeholder #a8a8a8 → 7.1:1 on the field (text ≥ 4.5:1) */
+/* Field colors meet WCAG AA in both themes (see tokens) */
 .form__field input,
 .form__field select,
 .form__field textarea {
   width: 100%;
   min-height: 44px;
   padding: 10px 12px;
-  border: 1px solid #8c8c8c;
+  border: 1px solid var(--c-field-border);
   border-radius: 8px;
-  background: var(--c-surface);
+  background: var(--c-field);
   color: var(--c-text);
   font: 500 .9375rem/1.4 var(--f-sans);
   transition: border-color .2s, box-shadow .2s;
@@ -678,34 +826,34 @@ address { font-style: normal; }
 .form__field select {
   appearance: none;
   padding-right: 36px;
-  background: var(--c-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E") no-repeat right 14px center;
+  background: var(--c-field) var(--select-arrow) no-repeat right 14px center;
   cursor: pointer;
 }
 
-.form__field select:invalid { color: #a8a8a8; }  /* placeholder option */
-.form__field select option { color: var(--c-text); background: var(--c-surface); }
+.form__field select:invalid { color: var(--c-placeholder); }  /* placeholder option */
+.form__field select option { color: var(--c-text); background: var(--c-field); }
 
-.form__field ::placeholder { color: #a8a8a8; opacity: 1; }
+.form__field ::placeholder { color: var(--c-placeholder); opacity: 1; }
 
-.form__field :is(input, select, textarea):hover { border-color: #b3b3b3; }
+.form__field :is(input, select, textarea):hover { border-color: var(--c-field-hover); }
 
-/* Focus: 2px lime ring (13.7:1 on black) */
+/* Focus: 2px ring (lime on dark, ink on light) */
 .form__field :is(input, select, textarea):focus {
   outline: none;
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 1px var(--c-accent);
+  border-color: var(--c-focus);
+  box-shadow: 0 0 0 1px var(--c-focus);
 }
 
 .form__field [aria-invalid="true"] {
-  border-color: #ff8a80;
-  box-shadow: 0 0 0 1px #ff8a80;
+  border-color: var(--c-error);
+  box-shadow: 0 0 0 1px var(--c-error);
 }
 
 /* Error message under a field (created by assets/js/main.js) — 9.2:1 on black */
 .form__error {
   display: flex;
   gap: 6px;
-  color: #ff8a80;
+  color: var(--c-error);
   font-size: .9375rem;
   font-weight: 500;
   line-height: 1.35;
@@ -772,7 +920,7 @@ address { font-style: normal; }
 }
 
 .legal a { text-decoration: underline; text-underline-offset: 3px; }
-.legal a:hover { color: var(--c-accent); }
+.legal a:hover { color: var(--c-link-hover); }
 
 .legal__list {
   display: grid;
@@ -781,7 +929,7 @@ address { font-style: normal; }
   list-style: disc;
 }
 
-.legal__list li::marker { color: var(--c-accent); }
+.legal__list li::marker { color: var(--c-link-hover); }
 
 /* ==========================================================================
    Responsive
@@ -863,7 +1011,7 @@ address { font-style: normal; }
 
   /* Text sits at the bottom on mobile: darken from the bottom up */
   .hero::after {
-    background: linear-gradient(to top, rgb(0 0 0 / .7) 15%, rgb(0 0 0 / .45) 55%, transparent 85%);
+    background: var(--hero-scrim-mobile);
   }
 
   .hero__title { font-size: 10.6vw; line-height: 1; }

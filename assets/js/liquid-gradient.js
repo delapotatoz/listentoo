@@ -7,6 +7,7 @@
 (() => {
   const SETTINGS = {
     colors: ['#000000', '#d3ef9d', '#000000', '#000000', '#d3ef9d'],
+    colorsLight: ['#f4f4ef', '#c3e57e', '#f4f4ef', '#f4f4ef', '#c3e57e'], // "jour" theme
     seed: 648,
     speed: 1.6,      // Framer: 1.12
     scale: 0.29,
@@ -117,7 +118,12 @@
     gl.uniform1f(u('uFrequency'), settings.frequency);
     gl.uniform1f(u('uBands'), settings.bands);
     gl.uniform1f(u('uGrain'), settings.noise === 'none' ? 0 : settings.amount);
-    gl.uniform3fv(u('uColors'), settings.colors.flatMap(hexToRgb));
+    const uColors = u('uColors');
+    const setColors = () => {
+      const light = document.documentElement.dataset.theme === 'light';
+      gl.uniform3fv(uColors, (light ? settings.colorsLight : settings.colors).flatMap(hexToRgb));
+    };
+    setColors();
     const uTime = u('uTime');
     const uResolution = u('uResolution');
 
@@ -157,6 +163,9 @@
       visible = entry.isIntersecting;
       if (visible) start();
     }).observe(canvas);
+
+    // Repaint with the other palette when the theme switches (see theme.js).
+    document.addEventListener('themechange', () => { setColors(); start(); });
 
     resize();
     start();

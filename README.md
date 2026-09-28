@@ -10,6 +10,7 @@ assets/
   css/style.css      # tokens (couleurs, typos, espacements Figma), composants, sections, responsive
   js/main.js         # marquees, menu burger mobile, retour du formulaire de contact
   js/motion.js       # smooth scroll (Lenis) + apparitions au scroll
+  js/theme.js        # bouton mode nuit / jour (choix mémorisé)
   js/liquid-gradient.js, js/text-particles.js  # fond animé du hero, effet CX IS HUMAN
   js/vendor/         # Lenis 1.3.26 (MIT)
   fonts/             # polices de secours auto-hébergées
@@ -24,6 +25,18 @@ assets/
 
 - **WT Gothic** (Medium 500, Semi-Bold 600, Bold 700) — auto-hébergée en WOFF2 dans `assets/fonts/`.
 - **Didot** Italic — fournie avec macOS ; **Bodoni Moda** Italic auto-hébergée en secours ailleurs.
+
+## Thèmes nuit / jour
+
+Le mode nuit est le thème par défaut. Le bouton du header bascule en mode jour ; le choix est
+mémorisé (`localStorage`) et appliqué avant l'affichage par un petit script dans le `<head>`.
+
+- Toutes les couleurs sont des variables CSS en haut de `style.css` : `:root` (nuit) et
+  `:root[data-theme="light"]` (jour). Contrastes vérifiés WCAG AA dans les deux thèmes.
+- Les logos et icônes exportés en blanc ou en tilleul sont passés en noir en mode jour via
+  `--img-mono` / `--img-lime`.
+- Le fond animé (`liquid-gradient.js`, palette `colorsLight`) et les particules suivent le thème
+  via l'événement `themechange`.
 
 ## Formulaire de contact
 
