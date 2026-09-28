@@ -5,6 +5,7 @@ Site vitrine statique (HTML / CSS / JS vanilla, sans build), intégré depuis la
 ```
 index.html
 contact.html         # page contact (formulaire)
+mentions-legales.html  # mentions légales + politique de confidentialité
 assets/
   css/style.css      # tokens (couleurs, typos, espacements Figma), composants, sections, responsive
   js/main.js         # marquees, menu burger mobile, retour du formulaire de contact

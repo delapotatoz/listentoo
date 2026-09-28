@@ -29,6 +29,7 @@
     '.marquee',
     '.contact',
     '.contact-card',
+    '.legal__block',
     '.footer__top',
     '.footer__bottom',
   ];
