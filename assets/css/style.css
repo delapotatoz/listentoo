@@ -1017,7 +1017,9 @@ address { font-style: normal; }
 
   .hero__title { font-size: 10.6vw; line-height: 1; }
   .hero__line--serif { padding-left: 0; margin-block: .06em 0; }
-  .hero__line--end { margin-top: .04em; }
+  .hero__line--end { align-self: flex-start; margin-top: .04em; } /* all lines left-aligned */
+
+  .hero__scroll { left: calc(var(--gutter) - 8px); translate: none; } /* the icon has an 8px inset */
 
   .hero__text {
     max-width: none;
