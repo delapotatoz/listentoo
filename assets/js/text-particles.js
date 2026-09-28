@@ -35,7 +35,8 @@
     const ctx = canvas.getContext('2d');
     const pointer = { x: -1e4, y: -1e4 };
     const { bleed } = settings;
-    canvas.style.inset = `${-bleed}px`;
+    canvas.style.left = `${-bleed}px`;
+    canvas.style.top = `${-bleed}px`;
     let particles = [];
     let width = 0;
     let height = 0;
@@ -58,7 +59,11 @@
       root.style.height = `${height}px`;
 
       // The canvas overflows the element by `bleed` on every side.
+      // Its CSS size must be explicit: otherwise a canvas takes its pixel size
+      // (× devicePixelRatio) and renders twice too big on Retina screens.
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.style.width = `${width + bleed * 2}px`;
+      canvas.style.height = `${height + bleed * 2}px`;
       canvas.width = Math.round((width + bleed * 2) * dpr);
       canvas.height = Math.round((height + bleed * 2) * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, bleed * dpr, bleed * dpr);
