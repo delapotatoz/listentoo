@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nous contacter — Listen too</title>
+  <meta name="description" content="Envie d’échanger avec Listen too ? Ou tout simplement prendre un café ? Écrivez-nous.">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preload" href="assets/fonts/wt-gothic-semi-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="index.html">
+        <img src="assets/img/logo.svg" width="126" height="20" alt="Listen too">
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu">
+        <span></span><span></span>
+      </button>
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <a class="nav__link" href="https://www.welcometothejungle.com/fr/companies-v1/listen-too/jobs" target="_blank" rel="noopener">Nos offres d’emplois</a>
+        <a class="nav__link" href="contact.html" aria-current="page">Nous contacter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="contact-page">
+      <canvas class="hero__canvas" data-liquid-gradient aria-hidden="true"></canvas>
+      <div class="container">
+        <div class="contact-card">
+          <h1 class="contact-card__title">Nous contacter</h1>
+          <p class="contact-card__intro">Envie d’échanger avec nous ? Ou tout simplement prendre un café ?</p>
+
+          <!-- Sent by FormSubmit (formsubmit.co) to the address below.
+               Spam protection: FormSubmit's server-side reCAPTCHA + honeypot field. -->
+          <form class="form" action="https://formsubmit.co/mdelapoterie@listen-too.com" method="POST" data-contact-form>
+            <input type="hidden" name="_subject" value="Nouveau message depuis le site Listen too">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="">
+            <input class="form__honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="form__grid">
+              <div class="form__field">
+                <label for="prenom">Prénom</label>
+                <input id="prenom" name="Prénom" type="text" placeholder="John" autocomplete="given-name" required>
+              </div>
+              <div class="form__field">
+                <label for="nom">Nom</label>
+                <input id="nom" name="Nom" type="text" placeholder="Lennon" autocomplete="family-name" required>
+              </div>
+
+              <div class="form__field">
+                <label for="motif">Je vous contacte pour</label>
+                <select id="motif" name="Motif" required>
+                  <option value="" disabled selected>Choisir une option</option>
+                  <option>Un projet / une mission</option>
+                  <option>L’expérience OKTAV</option>
+                  <option>Une candidature</option>
+                  <option>Un partenariat</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+              <div class="form__field">
+                <label for="agence">Je souhaite parler à l’agence de</label>
+                <select id="agence" name="Agence" required>
+                  <option value="" disabled selected>Choisir une option</option>
+                  <option>Paris</option>
+                  <option>Lille</option>
+                  <option>Nantes</option>
+                </select>
+              </div>
+
+              <div class="form__field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="jlennon@beatles.com" autocomplete="email" required>
+              </div>
+              <div class="form__field">
+                <label for="telephone">Numéro de téléphone</label>
+                <input id="telephone" name="Téléphone" type="tel" placeholder="06 36 65 65 65" autocomplete="tel" pattern="[0-9 +\(\)\-.]{8,20}">
+              </div>
+
+              <div class="form__field form__field--full">
+                <label for="message">Votre message</label>
+                <textarea id="message" name="Message" rows="4" placeholder="Saisissez votre message ici…" required></textarea>
+              </div>
+            </div>
+
+            <button class="form__submit" type="submit">Envoyer</button>
+
+            <p class="form__legal">
+              En validant ce formulaire, je consens à ce que le groupe Listen too recueille ces données
+              dans le but de répondre aux demandes d’informations, de gérer les contacts commerciaux ou
+              de traiter les candidatures. Pour connaître et faire appliquer vos droits sur vos données à
+              caractère personnel, consultez nos <a href="#">mentions légales</a>.
+            </p>
+          </form>
+
+          <div class="form__success" data-contact-success hidden>
+            <p class="form__success-title">Merci, votre message est bien parti&nbsp;!</p>
+            <p>Nous revenons vers vous très vite.</p>
+            <a class="btn" href="index.html">Retour à l’accueil</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div>
+            <a href="index.html"><img src="assets/img/logo.svg" width="270" height="43" alt="Listen too"></a>
+            <p class="footer__slogan">Organisé.es pour écouter</p>
+          </div>
+
+          <ul class="footer__partners">
+            <li><a href="https://www.linkedin.com/" aria-label="LinkedIn"><img src="assets/img/icons/linkedin.svg" width="30" height="30" alt=""></a></li>
+            <li><a href="https://www.welcometothejungle.com/fr/companies-v1/listen-too/jobs" target="_blank" rel="noopener" aria-label="Welcome to the Jungle"><img src="assets/img/icons/wttj.svg" width="118" height="30" alt=""></a></li>
+            <li><a href="https://open.spotify.com/" aria-label="Spotify"><img src="assets/img/spotify.webp" width="110" height="31" alt=""></a></li>
+          </ul>
+
+          <ul class="footer__labels" aria-label="Labels">
+            <li><img src="assets/img/label-gptw.webp" width="74" height="74" alt="Great Place To Work"></li>
+            <li><img src="assets/img/label-ecovadis.webp" width="48" height="48" alt="EcoVadis Silver 2023"></li>
+          </ul>
+        </div>
+
+        <ul class="footer__offices">
+          <li>
+            <h3 class="footer__city">Paris</h3>
+            <address>12-14 rue de l’Église<br>75015 Paris</address>
+          </li>
+          <li>
+            <h3 class="footer__city">Lille</h3>
+            <address>165 avenue de Bretagne<br>59000 Lille</address>
+          </li>
+          <li>
+            <h3 class="footer__city">Nantes</h3>
+            <address>17 boulevard de Berlin<br>44000 Nantes</address>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 Listen too - fait avec 💚 à Lille &amp; Paris</p>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+
+    <p class="footer__giant" aria-hidden="true">CX IS HUMAN</p>
+  </footer>
+
+  <script src="assets/js/vendor/lenis.min.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/liquid-gradient.js" defer></script>
+</body>
+</html>

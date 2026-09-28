@@ -7,7 +7,8 @@
 
   /* ---------- Smooth scrolling ---------- */
   if (window.Lenis) {
-    new window.Lenis({
+    // Exposed so other scripts can pause it (e.g. while the menu is open).
+    window.lenis = new window.Lenis({
       autoRaf: true,
       anchors: true,   // smooth scroll for in-page links (#contact…)
       lerp: 0.09,
@@ -27,6 +28,7 @@
     '.human__visual',
     '.marquee',
     '.contact',
+    '.contact-card',
     '.footer__top',
     '.footer__bottom',
   ];
