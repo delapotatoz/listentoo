@@ -625,6 +625,8 @@ address { font-style: normal; }
 
 .form { margin-top: 24px; }
 
+.form__required { margin-bottom: 20px; font-weight: 500; }
+
 .form__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -634,20 +636,23 @@ address { font-style: normal; }
 .form__field { display: grid; gap: 10px; }
 .form__field--full { grid-column: 1 / -1; }
 
-.form__field label { font-size: .9375rem; }
+.form__field label { font-size: 1rem; }
 
+/* Field colors meet WCAG AA:
+   border #8c8c8c → 6.2:1 on the black card, 4.9:1 on the field (non-text ≥ 3:1)
+   placeholder #a8a8a8 → 7.1:1 on the field (text ≥ 4.5:1) */
 .form__field input,
 .form__field select,
 .form__field textarea {
   width: 100%;
-  min-height: 40px;
-  padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, .08);
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #8c8c8c;
   border-radius: 8px;
   background: var(--c-surface);
   color: var(--c-text);
   font: 500 .9375rem/1.4 var(--f-sans);
-  transition: border-color .2s;
+  transition: border-color .2s, box-shadow .2s;
 }
 
 .form__field textarea { min-height: 100px; resize: vertical; }
@@ -659,17 +664,24 @@ address { font-style: normal; }
   cursor: pointer;
 }
 
-.form__field select:invalid { color: #8a8a8a; }  /* placeholder option */
+.form__field select:invalid { color: #a8a8a8; }  /* placeholder option */
 .form__field select option { color: var(--c-text); background: var(--c-surface); }
 
-.form__field ::placeholder { color: #8a8a8a; opacity: 1; }
+.form__field ::placeholder { color: #a8a8a8; opacity: 1; }
 
+.form__field :is(input, select, textarea):hover { border-color: #b3b3b3; }
+
+/* Focus: 2px lime ring (13.7:1 on black) */
 .form__field :is(input, select, textarea):focus {
   outline: none;
   border-color: var(--c-accent);
+  box-shadow: 0 0 0 1px var(--c-accent);
 }
 
-.form__field :is(input, select, textarea):user-invalid { border-color: #ff8a80; }
+.form__field :is(input, select, textarea):user-invalid {
+  border-color: #ff8a80;
+  box-shadow: 0 0 0 1px #ff8a80;
+}
 
 .form__honeypot { position: absolute; left: -9999px; }
 

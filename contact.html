@@ -38,7 +38,9 @@
 
           <!-- Sent by FormSubmit (formsubmit.co) to the address below.
                Spam protection: FormSubmit's server-side reCAPTCHA + honeypot field. -->
-          <form class="form" action="https://formsubmit.co/mdelapoterie@listen-too.com" method="POST" data-contact-form>
+          <form class="form" action="https://formsubmit.co/mdelapoterie@listen-too.com" method="POST" aria-describedby="form-required" data-contact-form>
+            <p class="form__required" id="form-required">Tous les champs sont obligatoires.</p>
+
             <input type="hidden" name="_subject" value="Nouveau message depuis le site Listen too">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_next" value="">
@@ -81,7 +83,7 @@
               </div>
               <div class="form__field">
                 <label for="telephone">Numéro de téléphone</label>
-                <input id="telephone" name="Téléphone" type="tel" placeholder="06 36 65 65 65" autocomplete="tel" pattern="[0-9 +\(\)\-.]{8,20}">
+                <input id="telephone" name="Téléphone" type="tel" placeholder="06 36 65 65 65" autocomplete="tel" pattern="[0-9 +\(\)\-.]{8,20}" required>
               </div>
 
               <div class="form__field form__field--full">
