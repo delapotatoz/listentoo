@@ -275,6 +275,24 @@ address { font-style: normal; }
 
 .hero__canvas.is-ready { opacity: 1; }
 
+/* Readability scrim: darkens the gradient behind the text only,
+   the edges keep the full silk effect. Painted above the canvas. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 26% at 58% 75%, rgb(0 0 0 / .45), transparent 80%), /* paragraph */
+    linear-gradient(rgb(0 0 0 / .1), rgb(0 0 0 / .45) 18%, rgb(0 0 0 / .45) 80%, rgb(0 0 0 / .1)); /* title band */
+}
+
+.hero__title,
+.hero__text {
+  text-shadow: 0 1px 2px rgb(0 0 0 / .35), 0 2px 28px rgb(0 0 0 / .45);
+}
+
 .hero__title {
   display: flex;
   flex-direction: column;
@@ -841,6 +859,11 @@ address { font-style: normal; }
     min-height: 100svh;
     padding-block: 120px 104px;
     background-position: 60% center;
+  }
+
+  /* Text sits at the bottom on mobile: darken from the bottom up */
+  .hero::after {
+    background: linear-gradient(to top, rgb(0 0 0 / .7) 15%, rgb(0 0 0 / .45) 55%, transparent 85%);
   }
 
   .hero__title { font-size: 10.6vw; line-height: 1; }
