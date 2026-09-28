@@ -245,11 +245,11 @@ address { font-style: normal; }
   flex-direction: column;
   font-size: var(--fs-hero);
   font-weight: 600;
-  line-height: 1;
+  line-height: .95;
 }
 
 .hero__line--serif {
-  margin-block: .08em .12em;
+  margin-block: .02em -.02em;
   padding-left: .586em;                      /* 75px @128px */
   font-family: var(--f-serif);
   font-style: italic;
