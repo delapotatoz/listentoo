@@ -7,6 +7,9 @@ index.html
 assets/
   css/style.css      # tokens (couleurs, typos, espacements Figma), composants, sections, responsive
   js/main.js         # duplication des marquees (défilement infini)
+  js/motion.js       # smooth scroll (Lenis) + apparitions au scroll
+  js/liquid-gradient.js, js/text-particles.js  # fond animé du hero, effet CX IS HUMAN
+  js/vendor/         # Lenis 1.3.26 (MIT)
   fonts/             # polices de secours auto-hébergées
   img/
     logo.svg, oktav.svg        # logos vectoriels extraits du Figma
