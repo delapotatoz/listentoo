@@ -17,6 +17,11 @@
     bands: 1.6,
     noise: 'smooth', // 'smooth' | 'none'
     amount: 0.05,    // grain amount
+    // Pointer interaction (hover): the liquid swirls around the cursor and is
+    // dragged along with its movement.
+    pointerRadius: 0.32, // influence radius (× hero height)
+    pointerSwirl: 1.4,   // twist at the cursor, in radians
+    pointerDrag: 2.2,    // how far the matter follows the cursor movement
   };
 
   const VERTEX = `
@@ -39,6 +44,12 @@
   uniform float uBands;
   uniform float uGrain;
   uniform vec3 uColors[COLOR_COUNT];
+  uniform vec2 uPointer;       // cursor, same space as uv
+  uniform vec2 uPointerVel;    // smoothed cursor velocity
+  uniform float uPointerForce; // 0 → 1 while hovering (eased)
+  uniform float uPointerRadius;
+  uniform float uPointerSwirl;
+  uniform float uPointerDrag;
 
   vec3 palette(float t) {
     float x = clamp(t, 0.0, 1.0) * float(COLOR_COUNT - 1);
@@ -55,6 +66,15 @@
 
   void main() {
     vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / uResolution.y;
+
+    // Pointer: twist the plane around the cursor and drag it along the movement,
+    // with a soft gaussian falloff so the liquid stays continuous.
+    vec2 d = uv - uPointer;
+    float falloff = exp(-dot(d, d) / (uPointerRadius * uPointerRadius)) * uPointerForce;
+    float angle = falloff * uPointerSwirl;
+    d = mat2(cos(angle), -sin(angle), sin(angle), cos(angle)) * d;
+    uv = uPointer + d - uPointerVel * falloff * uPointerDrag;
+
     vec2 p = uv * uScale * 6.0;
     float t = uTime;
     float seed = uSeed * 0.01;
@@ -126,6 +146,12 @@
     setColors();
     const uTime = u('uTime');
     const uResolution = u('uResolution');
+    const uPointer = u('uPointer');
+    const uPointerVel = u('uPointerVel');
+    const uPointerForce = u('uPointerForce');
+    gl.uniform1f(u('uPointerRadius'), settings.pointerRadius);
+    gl.uniform1f(u('uPointerSwirl'), settings.pointerSwirl);
+    gl.uniform1f(u('uPointerDrag'), settings.pointerDrag);
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -141,9 +167,54 @@
     let elapsed = 0;
     let last = performance.now();
 
+    // Pointer state, in shader uv space (centered, 1 unit = canvas height).
+    const pointer = {
+      target: [0, 0], pos: [0, 0], prev: [0, 0], vel: [0, 0],
+      hovering: false, force: 0,
+    };
+
+    const setTarget = (event) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.target = [
+        (event.clientX - rect.left - rect.width / 2) / rect.height,
+        (rect.height / 2 - (event.clientY - rect.top)) / rect.height,
+      ];
+      if (!pointer.hovering) {
+        // Entering: start from the cursor, not from where it left last time.
+        pointer.pos = [...pointer.target];
+        pointer.prev = [...pointer.target];
+      }
+      pointer.hovering = true;
+    };
+
+    const hero = canvas.parentElement;
+    if (!reducedMotion.matches) {
+      hero.addEventListener('pointermove', setTarget, { passive: true });
+      hero.addEventListener('pointerdown', setTarget, { passive: true });
+      hero.addEventListener('pointerleave', () => { pointer.hovering = false; });
+    }
+
+    // Frame-rate independent easing towards the cursor.
+    const updatePointer = (dt) => {
+      const ease = (rate) => 1 - Math.exp(-dt * rate);
+      const p = pointer;
+      for (let i = 0; i < 2; i++) {
+        p.pos[i] += (p.target[i] - p.pos[i]) * ease(8);
+        const speed = ((p.pos[i] - p.prev[i]) / Math.max(dt, 1e-3)) * 0.06;
+        p.vel[i] += (Math.max(-0.25, Math.min(0.25, speed)) - p.vel[i]) * ease(5);
+        p.prev[i] = p.pos[i];
+      }
+      p.force += ((p.hovering ? 1 : 0) - p.force) * ease(p.hovering ? 3 : 1.5);
+      gl.uniform2f(uPointer, p.pos[0], p.pos[1]);
+      gl.uniform2f(uPointerVel, p.vel[0], p.vel[1]);
+      gl.uniform1f(uPointerForce, p.force);
+    };
+
     const draw = (now) => {
-      elapsed += (now - last) / 1000;
+      const dt = Math.min((now - last) / 1000, 0.1);
+      elapsed += dt;
       last = now;
+      updatePointer(dt);
       gl.uniform1f(uTime, elapsed * settings.speed * 0.1);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       canvas.classList.add('is-ready');
