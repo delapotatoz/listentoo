@@ -359,6 +359,10 @@ address { font-style: normal; }
 
 .human__visual { flex: none; width: 330px; }
 
+/* Interactive particles (assets/js/text-particles.js) replace the image */
+.human__visual.is-live img { display: none; }
+.text-particles { display: block; width: 100%; }
+
 /* ==========================================================================
    OKTAV
    ========================================================================== */
