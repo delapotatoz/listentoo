@@ -52,7 +52,7 @@
 
   --container: 1180px;
   --gutter: 20px;
-  --section-gap: clamp(96px, 11.8vw, 170px);
+  --section-gap: calc(clamp(96px, 11.8vw, 170px) + 50px);
   --gap: 24px;
   --radius-card: 31px;
   --radius-btn: 16px;
@@ -73,7 +73,7 @@
 
 * { margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { overflow-x: clip; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   min-height: 100vh;
@@ -84,7 +84,7 @@ body {
   font-weight: 600;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -360,8 +360,9 @@ address { font-style: normal; }
 .human__visual { flex: none; width: 330px; }
 
 /* Interactive particles (assets/js/text-particles.js) replace the image */
+.human__visual.is-live { position: relative; }
 .human__visual.is-live img { display: none; }
-.text-particles { display: block; width: 100%; }
+.text-particles { position: absolute; pointer-events: none; }
 
 /* ==========================================================================
    OKTAV

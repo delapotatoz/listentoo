@@ -19,6 +19,7 @@
     repelRadius: 100,
     repelForce: 0.8,
     returnSpeed: 0.15,
+    bleed: 140,        // extra canvas room around the text so pushed dots stay visible
     hairline: 0.025,   // stroke width added before sampling (× font size)
   };
 
@@ -33,6 +34,8 @@
 
     const ctx = canvas.getContext('2d');
     const pointer = { x: -1e4, y: -1e4 };
+    const { bleed } = settings;
+    canvas.style.inset = `${-bleed}px`;
     let particles = [];
     let width = 0;
     let height = 0;
@@ -52,12 +55,13 @@
       const fontSize = (width / (widest + 50)) * 100; // keeps the Framer 0.5em safety margin
       const lineHeight = fontSize * settings.lineHeight;
       height = Math.ceil(lines.length * lineHeight + fontSize * 0.5);
+      root.style.height = `${height}px`;
 
+      // The canvas overflows the element by `bleed` on every side.
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      canvas.style.height = `${height}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.width = Math.round((width + bleed * 2) * dpr);
+      canvas.height = Math.round((height + bleed * 2) * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, bleed * dpr, bleed * dpr);
 
       const off = document.createElement('canvas');
       off.width = width;
@@ -98,7 +102,7 @@
 
     const step = () => {
       const { repelRadius, repelForce, returnSpeed, particleSize } = settings;
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(-bleed, -bleed, width + bleed * 2, height + bleed * 2);
 
       for (const p of particles) {
         ctx.fillStyle = p.color;
@@ -125,17 +129,22 @@
       if (!frame) frame = requestAnimationFrame(step);
     };
 
+    // The canvas ignores pointer events (it overlaps the text column),
+    // so the pointer is tracked on the window, relative to the text box.
     const setPointer = (event) => {
-      const rect = canvas.getBoundingClientRect();
+      if (!visible) return;
+      const rect = root.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
     };
     const clearPointer = () => { pointer.x = -1e4; pointer.y = -1e4; };
 
-    canvas.addEventListener('pointermove', setPointer);
-    canvas.addEventListener('pointerdown', setPointer);
-    canvas.addEventListener('pointerleave', clearPointer);
-    canvas.addEventListener('pointerup', clearPointer);
+    window.addEventListener('pointermove', setPointer, { passive: true });
+    window.addEventListener('pointerdown', setPointer, { passive: true });
+    document.documentElement.addEventListener('pointerleave', clearPointer);
+    window.addEventListener('pointerup', (event) => {
+      if (event.pointerType !== 'mouse') clearPointer();
+    });
 
     // Rebuild when the element is resized; animate only while on screen.
     let lastWidth = 0;
