@@ -56,7 +56,13 @@
     if (location.protocol.startsWith('http')) {
       next.value = `${location.origin}${location.pathname}?envoye=1`;
     } else {
-      next.remove(); // local file: fall back to the service's own thank-you page
+      // Opened as a local file: FormSubmit rejects these, explain instead of failing.
+      next.remove();
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        alert('Le formulaire ne peut pas être envoyé depuis un fichier ouvert en local.\n'
+          + 'Servez le site via un serveur web (ex. : npx serve .) ou mettez-le en ligne.');
+      });
     }
 
     if (new URLSearchParams(location.search).has('envoye')) {
