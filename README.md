@@ -17,13 +17,8 @@ assets/
 
 ## Polices
 
-La maquette utilise **WT Gothic** (sans) et **Didot Italic** (serif).
-
-- WT Gothic est une police commerciale : ajoutez ses fichiers dans `assets/fonts/` et déclarez-les
-  avec `@font-face { font-family: "WT Gothic"; … }` en haut de `style.css` — elle sera utilisée automatiquement.
-- Didot est fournie avec macOS.
-- En attendant, les polices de secours sont **Archivo** (largeur 110 %, calée sur les métriques de WT Gothic)
-  et **Bodoni Moda** Italic.
+- **WT Gothic** (Medium 500, Semi-Bold 600, Bold 700) — auto-hébergée en WOFF2 dans `assets/fonts/`.
+- **Didot** Italic — fournie avec macOS ; **Bodoni Moda** Italic auto-hébergée en secours ailleurs.
 
 ## Lancer
 

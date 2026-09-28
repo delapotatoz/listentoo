@@ -5,14 +5,27 @@
 
 /* ---------- Fonts ----------
    Design fonts: "WT Gothic" (sans) & "Didot" Italic (serif).
-   WT Gothic is a commercial font: drop its files in /assets/fonts and declare
-   them here to use it. Didot ships with macOS. Archivo (wide) and
-   Bodoni Moda (italic) are the self-hosted fallbacks. */
+   Didot ships with macOS; Bodoni Moda (italic) is the self-hosted fallback. */
 @font-face {
-  font-family: "Archivo";
-  src: url("../fonts/archivo-variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-stretch: 62% 125%;
+  font-family: "WT Gothic";
+  src: url("../fonts/wt-gothic-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WT Gothic";
+  src: url("../fonts/wt-gothic-semi-bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "WT Gothic";
+  src: url("../fonts/wt-gothic-bold.woff2") format("woff2");
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -34,7 +47,7 @@
   --c-accent: #d3ef9d;
   --c-ink: #000;
 
-  --f-sans: "WT Gothic", "Archivo", system-ui, sans-serif;
+  --f-sans: "WT Gothic", system-ui, sans-serif;
   --f-serif: "Didot", "Bodoni Moda", "Bodoni 72", serif;
 
   --container: 1180px;
@@ -67,7 +80,6 @@ body {
   background: var(--c-bg);
   color: var(--c-text);
   font-family: var(--f-sans);
-  font-stretch: 110%;  /* matches WT Gothic widths */
   font-size: var(--fs-body);
   font-weight: 600;
   line-height: 1.4;
@@ -105,7 +117,6 @@ address { font-style: normal; }
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 400;
-  font-stretch: normal;
   line-height: 1.4;
   letter-spacing: -.06em;
 }
@@ -243,7 +254,6 @@ address { font-style: normal; }
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 400;
-  font-stretch: normal;
   font-size: 1.133em;                        /* 145px */
   white-space: nowrap;
 }
@@ -308,7 +318,6 @@ address { font-style: normal; }
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 400;
-  font-stretch: normal;
   font-size: var(--fs-h2);
   line-height: 1.4;
   letter-spacing: -.06em;
@@ -381,7 +390,6 @@ address { font-style: normal; }
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 400;
-  font-stretch: normal;
   font-size: min(var(--fs-h2), 3vw);
   line-height: 1.4;
   letter-spacing: -.06em;
@@ -537,7 +545,6 @@ address { font-style: normal; }
   font-family: var(--f-serif);
   font-style: italic;
   font-weight: 400;
-  font-stretch: normal;
   font-size: clamp(4rem, 16.25vw, 14.625rem); /* 234px */
   line-height: 1.4;
   letter-spacing: -.06em;

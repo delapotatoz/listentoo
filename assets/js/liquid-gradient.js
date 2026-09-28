@@ -7,9 +7,9 @@
 const SETTINGS = {
   colors: ['#000000', '#d3ef9d', '#000000', '#000000', '#d3ef9d'],
   seed: 648,
-  speed: 1.12,
+  speed: 1.6,      // Framer: 1.12
   scale: 0.29,
-  amplitude: 0.6,
+  amplitude: 0.42, // Framer: 0.6 (fewer folds)
   frequency: 0.1,
   definition: 7,   // warp iterations
   bands: 1.6,
