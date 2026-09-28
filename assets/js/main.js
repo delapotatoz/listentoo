@@ -65,7 +65,14 @@
       });
     }
 
-    if (new URLSearchParams(location.search).has('envoye')) {
+    const params = new URLSearchParams(location.search);
+
+    // Preselect the reason, e.g. contact.html?motif=oktav
+    const reason = params.get('motif');
+    const option = reason && form.querySelector(`option[data-key="${CSS.escape(reason)}"]`);
+    if (option) option.selected = true;
+
+    if (params.has('envoye')) {
       form.hidden = true;
       document.querySelector('[data-contact-success]').hidden = false;
     }
