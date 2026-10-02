@@ -610,7 +610,7 @@ address { font-style: normal; }
    ========================================================================== */
 .team {
   display: grid;
-  grid-template-columns: 380fr 376fr 376fr;
+  grid-template-columns: minmax(0, 380fr) minmax(0, 376fr) minmax(0, 376fr);
   gap: var(--gap);
   margin-top: 7px;
 }
@@ -619,6 +619,9 @@ address { font-style: normal; }
 .team__tall { grid-row: span 2; }
 
 .quote { gap: 24px; min-height: 234px; }
+
+/* Long job titles wrap inside the badge instead of widening the card */
+.quote .badge { max-width: 100%; white-space: normal; }
 .quote .card__title + .card__text { margin-top: -16px; } /* name → quote: 8px */
 
 .join { gap: 24px; }
@@ -937,7 +940,7 @@ address { font-style: normal; }
 @media (max-width: 1100px) {
   .roles { grid-template-columns: repeat(2, 1fr); }
 
-  .team { grid-template-columns: repeat(2, 1fr); }
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .team__wide { grid-column: auto; }
   .team__tall { grid-row: span 2; }
 
